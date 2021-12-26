@@ -10,6 +10,20 @@ module Types
     # TODO: remove me
     field :test_field, String, null: false,
       description: "An example field added by the generator"
+    
+    field :users, [Types::UserType], null: false
+    field :user, Types::UserType, null: false do
+      argument :id, ID, required: true
+    end
+
+    def users
+      User.all
+    end
+
+    def user(id:)
+      User.find(id)
+    end
+
     def test_field
       "Hello World!"
     end
