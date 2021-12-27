@@ -34,3 +34,5 @@
 
 # vim shit
 *.*.swp
+
+node_modules
