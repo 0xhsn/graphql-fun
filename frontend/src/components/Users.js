@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
+import UserAvatar from "./UserAvatar";
 
 const GET_USERS = gql`
   {
@@ -17,18 +18,15 @@ function Users({ selectUser }) {
   if (loading) return "loading...";
   if (error) return `error: ${error.message}`;
 
-  return (
-    <div>
-      {data.users.map((user) => (
-        <div key={user.id}>
-          <h1>{user.name}</h1>
-          <p>{user.email}</p>
-          <br/>
+  return(
+    <div className="flex flex-wrap items-center pb-16">
+      {data.users.map(user => (
+        <div key={user.id} className="lg:w-1/3 w-full p-4 text-center" onClick={selectUser.bind(this, user)}>
+          <UserAvatar user={user} />
         </div>
-        
       ))}
     </div>
-  );
+  )
 }
 
 export default Users;

@@ -1,13 +1,22 @@
-import Users from "../components/Users";
+import React from "react";
+import Users from "./Users";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Users:</h1>
-      <br/>
-      <Users />
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    selectUser: null,
+  };
+
+  selectUser = (user) => {
+    this.setState({ selectedUser: user });
+  };
+
+  render() {
+    return (
+      <div className="container mx-auto px-4">
+        <Users selectUser={this.selectUser} />
+      </div>
+    );
+  }
 }
 
 export default App;
